@@ -14,6 +14,13 @@ wasm-bindgen = "0.2"
 regex = "1.7"
 lazy_static = "1.4"
 
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "lookup_bench"
+harness = false
+
 [build-dependencies]
 reqwest = { version = "0.11", features = ["json", "blocking"] }
 phf_codegen = "0.11.1"
