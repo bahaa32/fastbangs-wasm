@@ -1,0 +1,28 @@
+[package]
+name = "fastbangs-wasm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+phf = { version = "0.11", default-features = false }
+wasm-bindgen = "0.2"
+regex = "1.7"
+lazy_static = "1.4"
+
+[build-dependencies]
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+phf_codegen = "0.11.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+lto = true
+opt-level = 3
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-O3"]

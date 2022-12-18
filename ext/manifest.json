@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "FastBangs",
+  "version": "1.0",
+
+  "description": "Adds !bangs functionality to Google Search and speeds up DuckDuckGo's.",
+
+  "background": {
+    "scripts": [
+      "fastbangs_wasm.js"
+    ]
+  },
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.google.com/search?*",
+    "*://duckduckgo.com/?q=*"
+  ]
+}
