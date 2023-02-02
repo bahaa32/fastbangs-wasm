@@ -14,7 +14,7 @@ The output will be placed in the `out` folder. You can remove this folder if you
 ## Performance 🚄💨
 The increased responsiveness is definitely observable. On my machine, a query (on DuckDuckGo) with a bang took ~140ms before it redirected me to the destination. By comparison, FastBangs starts a lookup immediately after you submit your query (and before the request is even made). The lookup is near instant, consistently taking **>1 ms** from start to redirect on my machine.
 
-For more context, the native Rust `process_query` function takes **~200 nanoseconds** to run on my laptop (although the WASM build is likely to be a bit slower). This speed is achieved by pre-building a fast and static `Map` using [`phf`](https://crates.io/crates/phf) before compile time in `build.rs`. This has the benefit of throwing away data we don't need from the original DuckDuckGo bangs list to save space and speeds up execution in runtime (compared to parsing the bangs list's JSON in runtime since it is very large at ~2.5MB).
+For more context, the native Rust `process_query` function takes **~200 nanoseconds** to run on my laptop (although the WASM build is likely to be a bit slower). This speed is achieved by pre-building a fast and static `Map` using [`phf`](https://crates.io/crates/phf) at compile time in `build.rs`. This has the benefit of throwing away data we don't need from the original DuckDuckGo bangs list to save space and speeds up execution in runtime (compared to parsing the bangs list's JSON in runtime since it is very large at ~2.5MB).
 
 The resulting Rust code (including the generated map) is then compiled to WebAssembly and embedded into the extension to achieve this level of performance.
 
